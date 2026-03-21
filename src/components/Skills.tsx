@@ -37,36 +37,67 @@ export function Skills() {
   return (
     <section id="skills" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionTitle title="Technical Skills" subtitle="Technologies I work with" />
+        <SectionTitle
+          title="Technical Skills"
+          subtitle="Technologies I work with"
+        />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, catIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: catIndex * 0.1 }}
-              className={`glass-card p-6 ${
-                category.highlight ? 'border-sky-500/50 glow-border' : ''
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{
+                delay: catIndex * 0.08,
+                duration: 0.5,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className={`glass-card p-6 transition-all duration-300 ${
+                category.highlight ? 'glow-border theme-border border-[var(--theme-accent)]/40' : ''
               }`}
             >
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-2xl">{category.icon}</span>
-                <h3 className="text-sky-400 font-semibold">{category.title}</h3>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: catIndex * 0.08 + 0.1 }}
+                className="flex items-center gap-2 mb-4"
+              >
+                <motion.span
+                  className="text-2xl"
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                >
+                  {category.icon}
+                </motion.span>
+                <h3 className="theme-accent font-semibold">{category.title}</h3>
+              </motion.div>
               <div className="flex flex-wrap gap-2">
                 {category.items.map((skill, i) => (
-                  <span
+                  <motion.span
                     key={skill}
-                    className={`px-3 py-1 rounded-full text-sm ${
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      delay: catIndex * 0.05 + i * 0.03,
+                      type: 'spring',
+                      stiffness: 200,
+                    }}
+                    whileHover={{
+                      scale: 1.05,
+                      transition: { duration: 0.15 },
+                    }}
+                    className={`px-3 py-1 rounded-full text-sm transition-colors ${
                       category.highlight
-                        ? 'bg-sky-500/20 text-sky-300 border border-sky-500/30'
-                        : 'bg-slate-800/50 text-slate-300 border border-dark-border'
+                        ? 'theme-accent-bg theme-accent border border-[var(--theme-accent)]/30'
+                        : 'bg-[var(--theme-bg)]/80 theme-text-muted theme-border border'
                     }`}
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>

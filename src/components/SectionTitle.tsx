@@ -10,18 +10,43 @@ interface SectionTitleProps {
 export function SectionTitle({ title, subtitle }: SectionTitleProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="mb-12 text-center"
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-2">
+      <motion.h2
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2 }}
+        className="text-3xl md:text-4xl font-bold theme-text mb-2"
+      >
         {title}
-      </h2>
+      </motion.h2>
       {subtitle && (
-        <p className="text-slate-600 dark:text-slate-400 text-lg">{subtitle}</p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="theme-text-muted text-lg"
+        >
+          {subtitle}
+        </motion.p>
       )}
-      <div className="w-16 h-1 bg-gradient-to-r from-sky-500 to-cyan-500 mx-auto mt-4 rounded-full" />
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+        className="h-1 rounded-full mx-auto mt-4 origin-center"
+        style={{
+          width: 64,
+          background: `linear-gradient(90deg, transparent, var(--theme-accent), transparent)`,
+        }}
+      />
     </motion.div>
   )
 }

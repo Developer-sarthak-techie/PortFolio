@@ -14,34 +14,53 @@ export function AIInnovation() {
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Glow background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 via-transparent to-cyan-500/5 rounded-2xl pointer-events-none" />
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div
+            className="absolute inset-0 rounded-2xl pointer-events-none opacity-50"
+            style={{
+              background: `radial-gradient(ellipse at top right, var(--theme-accent-muted), transparent 60%)`,
+            }}
+          />
+          <div
+            className="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl pointer-events-none opacity-30"
+            style={{ background: 'var(--theme-accent)' }}
+          />
 
           <div className="relative grid md:grid-cols-2 gap-6">
             {aiInnovation.items.map((item, i) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-card p-6 border-sky-500/30 hover:border-sky-500/50 transition-colors group"
+                transition={{
+                  delay: i * 0.1,
+                  duration: 0.5,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                whileHover={{
+                  y: -5,
+                  transition: { duration: 0.2 },
+                }}
+                className="glass-card p-6 border-[var(--theme-accent)]/30 hover:border-[var(--theme-accent)]/50 transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-sky-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-500/30 transition-colors">
+                  <motion.div
+                    className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'var(--theme-accent-muted)' }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
                     <span className="text-2xl">🤖</span>
-                  </div>
+                  </motion.div>
                   <div>
-                    <h3 className="text-lg font-semibold text-sky-400 mb-2">
+                    <h3 className="text-lg font-semibold theme-accent mb-2 group-hover:opacity-90">
                       {item.title}
                     </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">
+                    <p className="theme-text-muted text-sm leading-relaxed">
                       {item.description}
                     </p>
                   </div>

@@ -41,11 +41,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${jetbrains.variable} font-sans min-h-screen bg-slate-50 text-slate-800 dark:bg-dark-bg dark:text-slate-200`}
+        className={`${outfit.variable} ${jetbrains.variable} font-sans min-h-screen`}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider defaultTheme="dark">
           <Navbar />
           {children}
         </ThemeProvider>

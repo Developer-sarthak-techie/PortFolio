@@ -12,7 +12,7 @@ A high-end, production-ready portfolio website for a software developer. Built w
 
 ## Features
 
-- Dark/Light theme toggle (default: dark)
+- **3 Premium Themes**: Ocean (dark blue), Light, Crimson (red & black) — with persistence
 - Smooth scrolling & animated section reveals
 - Fully responsive (mobile + desktop)
 - Glassmorphism & subtle glow effects
@@ -37,7 +37,8 @@ cd PortFolio
 npm install
 
 # Copy your resume PDF to public folder (optional)
-# Place your resume as public/resume.pdf for the Download Resume button to work
+# Place your resume as public/resume.pdf
+# Optionally add public/avatar.jpg for a custom profile photo (otherwise uses generated avatar)
 cp /path/to/your/resume.pdf public/resume.pdf
 
 # Run development server

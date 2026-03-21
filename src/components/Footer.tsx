@@ -1,34 +1,42 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { siteConfig } from '@/data/content'
 
 export function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer className="py-8 px-6 border-t border-slate-200 dark:border-dark-border">
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="py-8 px-6 theme-border border-t"
+    >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-slate-500 text-sm">
+        <p className="theme-text-muted text-sm">
           © {year} {siteConfig.name}. All rights reserved.
         </p>
         <div className="flex gap-6">
-          <a
+          <motion.a
             href={siteConfig.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-500 hover:text-sky-500 text-sm transition-colors"
+            className="theme-text-muted hover:theme-accent text-sm transition-colors"
+            whileHover={{ x: 2 }}
           >
             LinkedIn
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={siteConfig.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-500 hover:text-sky-500 text-sm transition-colors"
+            className="theme-text-muted hover:theme-accent text-sm transition-colors"
+            whileHover={{ x: 2 }}
           >
             GitHub
-          </a>
+          </motion.a>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }

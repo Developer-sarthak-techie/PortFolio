@@ -2,13 +2,11 @@
 
 import * as React from 'react'
 
-type Theme = 'dark' | 'light' | 'system'
+export type Theme = 'dark' | 'light' | 'crimson'
 
 type ThemeProviderProps = {
   children: React.ReactNode
-  attribute?: string
   defaultTheme?: Theme
-  enableSystem?: boolean
 }
 
 const ThemeContext = React.createContext<{
@@ -16,9 +14,10 @@ const ThemeContext = React.createContext<{
   setTheme: (theme: Theme) => void
 } | null>(null)
 
+const THEME_KEY = 'portfolio-theme'
+
 export function ThemeProvider({
   children,
-  attribute = 'class',
   defaultTheme = 'dark',
 }: ThemeProviderProps) {
   const [theme, setThemeState] = React.useState<Theme>(defaultTheme)
@@ -26,23 +25,23 @@ export function ThemeProvider({
 
   React.useEffect(() => {
     setMounted(true)
+    const stored = localStorage.getItem(THEME_KEY) as Theme | null
+    if (stored && ['dark', 'light', 'crimson'].includes(stored)) {
+      setThemeState(stored)
+    }
   }, [])
 
   const setTheme = React.useCallback((newTheme: Theme) => {
     setThemeState(newTheme)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(THEME_KEY, newTheme)
+    }
   }, [])
 
   React.useEffect(() => {
     if (mounted) {
       const root = document.documentElement
-      const body = document.body
-      if (theme === 'dark') {
-        root.classList.add('dark')
-        body?.classList.add('dark')
-      } else {
-        root.classList.remove('dark')
-        body?.classList.remove('dark')
-      }
+      root.setAttribute('data-theme', theme)
     }
   }, [theme, mounted])
 

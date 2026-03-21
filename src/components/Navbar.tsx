@@ -21,69 +21,65 @@ export function Navbar() {
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-8"
     >
       <nav className="mx-auto max-w-6xl flex items-center justify-between glass-card px-6 py-3">
-        <Link
-          href="#hero"
-          className="font-semibold text-lg text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
-        >
-          {siteConfig.name}
-        </Link>
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <Link
+            href="#hero"
+            className="font-semibold text-lg theme-accent hover:opacity-80 transition-opacity"
+          >
+            {siteConfig.name}
+          </Link>
+        </motion.div>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
+        <div className="hidden md:flex items-center gap-6">
+          {navLinks.map((link, i) => (
+            <motion.div
               key={link.href}
-              href={link.href}
-              className="text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 text-sm font-medium transition-colors"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + i * 0.03 }}
             >
-              {link.label}
-            </Link>
+              <Link
+                href={link.href}
+                className="theme-text-muted hover:theme-accent text-sm font-medium transition-colors"
+              >
+                {link.label}
+              </Link>
+            </motion.div>
           ))}
           <ThemeToggle />
-          <a
+          <motion.a
             href={siteConfig.resumeUrl}
             download
-            className="px-4 py-2 bg-sky-500/20 text-sky-400 rounded-lg text-sm font-medium hover:bg-sky-500/30 transition-colors border border-sky-500/30"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="px-4 py-2 theme-accent-bg theme-accent rounded-lg text-sm font-medium theme-border border hover:glow-border transition-all"
           >
             Resume
-          </a>
+          </motion.a>
         </div>
 
         <div className="flex md:hidden items-center gap-4">
           <ThemeToggle />
-          <button
+          <motion.button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-2 text-slate-400 hover:text-white"
+            className="p-2 theme-text-muted hover:theme-accent transition-colors"
+            whileTap={{ scale: 0.95 }}
             aria-label="Menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
-          </button>
+          </motion.button>
         </div>
       </nav>
 
@@ -93,15 +89,16 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
             className="md:hidden mt-2 glass-card overflow-hidden"
           >
-            <div className="flex flex-col p-4 gap-2">
+            <div className="flex flex-col p-4 gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-slate-400 hover:text-sky-400 hover:bg-sky-500/10 rounded-lg transition-colors"
+                  className="px-4 py-3 theme-text-muted hover:theme-accent rounded-lg transition-colors hover:bg-[var(--theme-accent-muted)]"
                 >
                   {link.label}
                 </Link>
@@ -109,7 +106,7 @@ export function Navbar() {
               <a
                 href={siteConfig.resumeUrl}
                 download
-                className="px-4 py-3 text-sky-400 hover:bg-sky-500/10 rounded-lg transition-colors"
+                className="px-4 py-3 theme-accent theme-accent-bg rounded-lg transition-colors"
               >
                 Download Resume
               </a>

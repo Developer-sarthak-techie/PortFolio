@@ -12,45 +12,55 @@ export function Certifications() {
 
         <div className="grid md:grid-cols-2 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            whileHover={{ y: -3 }}
             className="glass-card p-6"
           >
-            <h3 className="text-sky-400 font-semibold mb-4 flex items-center gap-2">
+            <h3 className="theme-accent font-semibold mb-4 flex items-center gap-2">
               <span>🎓</span> Certifications
             </h3>
             <ul className="space-y-2">
               {certifications.map((cert, i) => (
-                <li
+                <motion.li
                   key={i}
-                  className="text-slate-400 text-sm flex gap-2"
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="theme-text-muted text-sm flex gap-2"
                 >
-                  <span className="text-sky-500 flex-shrink-0">▹</span>
+                  <span className="theme-accent flex-shrink-0">▹</span>
                   {cert}
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-6 border-sky-500/30"
+            whileHover={{ y: -3 }}
+            className="glass-card p-6 border-[var(--theme-accent)]/30"
           >
-            <h3 className="text-sky-400 font-semibold mb-4 flex items-center gap-2">
+            <h3 className="theme-accent font-semibold mb-4 flex items-center gap-2">
               <span>🏆</span> Awards
             </h3>
             <ul className="space-y-2">
               {awards.map((award, i) => (
-                <li
+                <motion.li
                   key={i}
-                  className="text-slate-400 text-sm flex gap-2"
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="theme-text-muted text-sm flex gap-2"
                 >
                   <span className="text-amber-500 flex-shrink-0">★</span>
                   {award}
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>

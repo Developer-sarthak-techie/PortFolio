@@ -1,25 +1,86 @@
 'use client'
 
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from './ThemeProvider'
+
+const themes = [
+  { id: 'dark' as const, label: 'Ocean', icon: '🌊' },
+  { id: 'light' as const, label: 'Light', icon: '☀️' },
+  { id: 'crimson' as const, label: 'Crimson', icon: '🔴' },
+]
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
+  const [showMenu, setShowMenu] = useState(false)
+
+  const cycleTheme = () => {
+    const idx = themes.findIndex((t) => t.id === theme)
+    const next = themes[(idx + 1) % themes.length]
+    setTheme(next.id)
+  }
+
+  const currentTheme = themes.find((t) => t.id === theme)!
 
   return (
-    <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-lg text-slate-400 hover:text-sky-400 hover:bg-sky-500/10 transition-colors"
-      aria-label="Toggle theme"
-    >
-      {theme === 'dark' ? (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    <div className="relative">
+      <motion.button
+        onClick={() => setShowMenu(!showMenu)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="p-2.5 rounded-xl theme-btn transition-all duration-300 flex items-center gap-1.5"
+        aria-label="Change theme"
+      >
+        <span className="text-lg">{currentTheme.icon}</span>
+        <svg
+          className="w-4 h-4 theme-text opacity-70"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
-      ) : (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-        </svg>
-      )}
-    </button>
+      </motion.button>
+
+      <AnimatePresence>
+        {showMenu && (
+          <>
+            <div
+              className="fixed inset-0 z-40"
+              onClick={() => setShowMenu(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              className="absolute right-0 top-full mt-2 z-50 py-2 px-1 rounded-xl theme-card border theme-border shadow-xl min-w-[140px]"
+            >
+              {themes.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => {
+                    setTheme(t.id)
+                    setShowMenu(false)
+                  }}
+                  className={`w-full flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm transition-colors ${
+                    theme === t.id
+                      ? 'theme-accent-bg theme-accent-text'
+                      : 'theme-text hover:theme-hover-bg'
+                  }`}
+                >
+                  <span>{t.icon}</span>
+                  {t.label}
+                </button>
+              ))}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }

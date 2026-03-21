@@ -41,42 +41,65 @@ export function Contact() {
         <SectionTitle title="Get In Touch" subtitle="Let's connect" />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          whileHover={{ scale: 1.01 }}
+          transition={{ type: 'spring', stiffness: 300 }}
           className="glass-card p-8 md:p-12 text-center"
         >
-          <p className="text-slate-400 mb-8 max-w-xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="theme-text-muted mb-8 max-w-xl mx-auto"
+          >
             I&apos;m open to new opportunities and collaborations. Whether you have a
             project in mind or just want to connect—feel free to reach out.
-          </p>
+          </motion.p>
 
           <div className="flex flex-wrap justify-center gap-6">
-            {contactLinks.map((link) => (
-              <a
+            {contactLinks.map((link, i) => (
+              <motion.a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-sky-500/10 text-sky-400 rounded-lg border border-sky-500/30 hover:bg-sky-500/20 hover:border-sky-500/50 transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 + i * 0.1 }}
+                whileHover={{ y: -4, scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-2 px-6 py-3 theme-accent-bg theme-accent rounded-xl theme-border border hover:glow-border transition-all"
               >
                 {link.icon}
                 <span>{link.label}</span>
-              </a>
+              </motion.a>
             ))}
           </div>
 
-          <p className="mt-8 text-slate-500 text-sm">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="theme-text-muted text-sm mt-8"
+          >
             {siteConfig.location} · {siteConfig.phone}
-          </p>
+          </motion.p>
 
-          <a
+          <motion.a
             href={siteConfig.resumeUrl}
             download
-            className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-sky-500 text-white rounded-lg font-medium hover:bg-sky-600 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 mt-6 px-6 py-3 theme-accent rounded-xl font-medium transition-all hover:opacity-90"
+            style={{ background: 'var(--theme-accent)', color: 'white' }}
           >
             Download Resume
-          </a>
+          </motion.a>
         </motion.div>
       </div>
     </section>
