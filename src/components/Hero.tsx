@@ -29,11 +29,33 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 gamer-grid gamer-scanline"
       style={{ background: 'var(--theme-hero-gradient)' }}
     >
       {/* Animated background orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {Array.from({ length: 14 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1.5 h-1.5 rounded-full"
+            style={{
+              left: `${(i * 17) % 100}%`,
+              top: `${(i * 29) % 100}%`,
+              background: 'var(--theme-accent)',
+              opacity: 0.22,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.1, 0.35, 0.1],
+            }}
+            transition={{
+              duration: 2.6 + (i % 5),
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: i * 0.15,
+            }}
+          />
+        ))}
         <motion.div
           className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl"
           style={{
@@ -183,7 +205,7 @@ export function Hero() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="#projects"
-                className="inline-flex px-6 py-3 rounded-xl font-medium transition-all duration-300 shimmer theme-accent-bg theme-accent border theme-border hover:glow-border"
+                className="inline-flex px-6 py-3 rounded-xl font-medium transition-all duration-300 shimmer theme-accent-bg theme-accent border theme-border hover:glow-border neon-button"
               >
                 View Work
               </Link>
@@ -191,7 +213,7 @@ export function Hero() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="#contact"
-                className="inline-flex px-6 py-3 rounded-xl font-medium theme-accent theme-accent-bg border theme-border hover:glow-border transition-all duration-300"
+                className="inline-flex px-6 py-3 rounded-xl font-medium theme-accent theme-accent-bg border theme-border hover:glow-border transition-all duration-300 neon-button"
               >
                 Contact
               </Link>

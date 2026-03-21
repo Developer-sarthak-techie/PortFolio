@@ -42,8 +42,14 @@ function ProjectCard({
       <motion.div
         whileHover={{ y: -8 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        className="glass-card p-6 h-full flex flex-col relative overflow-hidden transition-all duration-300 hover:border-[var(--theme-accent)]/40 project-card-hover"
+        className="glass-card gamer-card p-6 h-full flex flex-col relative overflow-hidden transition-all duration-300 hover:border-[var(--theme-accent)]/40 project-card-hover"
       >
+        <motion.div
+          className="absolute top-0 left-[-20%] h-[2px] w-[40%]"
+          style={{ background: 'var(--theme-accent)', opacity: 0.75 }}
+          animate={{ x: ['0%', '320%'] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'linear' }}
+        />
 
         <div className="relative z-10">
           <div className="flex justify-between items-start gap-4 mb-4">

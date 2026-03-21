@@ -46,7 +46,7 @@ export function Navbar() {
             >
               <Link
                 href={link.href}
-                className="theme-text-muted hover:theme-accent text-sm font-medium transition-colors"
+                className="theme-text-muted hover:theme-accent text-sm font-medium transition-colors gamer-nav-link"
               >
                 {link.label}
               </Link>
