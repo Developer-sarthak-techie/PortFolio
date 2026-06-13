@@ -3,37 +3,16 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-// interface AvatarProps {
-//   src: string
-//   alt: string
-//   size?: number
-//   className?: string
-// }
 interface AvatarProps {
   src: string
   alt: string
-  width?: number
-  height?: number
+  size?: number
   className?: string
 }
 
 const DICEBEAR_URL = 'https://api.dicebear.com/7.x/initials/svg?seed=Sarthak&backgroundColor=0ea5e9&textColor=ffffff&fontSize=48'
 
-// export function Avatar({ src, alt, size = 600, className = '' }: AvatarProps)
-export function Avatar({
-
-  src,
-
-  alt,
-
-  width = 500,
-
-  height = 700,
-
-  className = '',
-
-}: AvatarProps)
-{
+export function Avatar({ src, alt, size = 600, className = '' }: AvatarProps) {
   const [imgSrc, setImgSrc] = useState(src)
   const [useFallback, setUseFallback] = useState(false)
 
@@ -63,8 +42,8 @@ export function Avatar({
     <Image
       src={imgSrc}
       alt={alt}
-      width={width}
-      height={height}
+      width={size}
+      height={size}
       priority
       unoptimized={imgSrc.startsWith('http')}
       className="w-full h-full object-cover"

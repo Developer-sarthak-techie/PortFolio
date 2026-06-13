@@ -63,8 +63,8 @@ export function Avatar({
     <Image
       src={imgSrc}
       alt={alt}
-      width={width}
-      height={height}
+      width={size}
+      height={size}
       priority
       unoptimized={imgSrc.startsWith('http')}
       className="w-full h-full object-cover"

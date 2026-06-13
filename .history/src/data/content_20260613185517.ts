@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'Sarthak Gupta',
   role: 'Software Developer',
   tagline: 'Backend Engineer & API Specialist',
-  avatarUrl: '/avtar.jpg',//'/avatar.png', // Add your photo to public/avatar.jpg for a custom avatar
+  avatarUrl: '/public/avtar.jpg',//'/avatar.png', // Add your photo to public/avatar.jpg for a custom avatar
   email: 'idealsarthak@gmail.com',
   phone: '+91 6307172838',
   location: 'Noida, India',

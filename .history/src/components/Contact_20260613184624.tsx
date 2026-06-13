@@ -33,7 +33,7 @@ const contactLinks = [
   //   ),
   // },
   {
-
+    
   }
 ]
 
@@ -65,8 +65,8 @@ export function Contact() {
           <div className="flex flex-wrap justify-center gap-6">
             {contactLinks.map((link, i) => (
               <motion.a
-                // key={link.label}
-                // href={link.href}
+                key={link.label}
+                href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
@@ -77,8 +77,8 @@ export function Contact() {
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-2 px-6 py-3 theme-accent-bg theme-accent rounded-xl theme-border border hover:glow-border transition-all"
               >
-                {/* {link.icon} */}
-                {/* <span>{link.label}</span> */}
+                {link.icon}
+                <span>{link.label}</span>
               </motion.a>
             ))}
           </div>

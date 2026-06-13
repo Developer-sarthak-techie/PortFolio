@@ -16,8 +16,8 @@ export function Footer() {
         <p className="theme-text-muted text-sm">
           © {year} {siteConfig.name}. All rights reserved.
         </p>
-        {/* <div className="flex gap-6"> */}
-          {/* <motion.a
+        <div className="flex gap-6">
+          <motion.a
             href={siteConfig.linkedin}
             target="_blank"
             rel="noopener noreferrer"
@@ -34,8 +34,8 @@ export function Footer() {
             whileHover={{ x: 2 }}
           >
             GitHub
-          </motion.a> */}
-        {/* </div> */}
+          </motion.a>
+        </div>
       </div>
     </motion.footer>
   )

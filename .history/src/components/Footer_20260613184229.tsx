@@ -17,7 +17,7 @@ export function Footer() {
           © {year} {siteConfig.name}. All rights reserved.
         </p>
         {/* <div className="flex gap-6"> */}
-          {/* <motion.a
+          <motion.a
             href={siteConfig.linkedin}
             target="_blank"
             rel="noopener noreferrer"
@@ -34,7 +34,7 @@ export function Footer() {
             whileHover={{ x: 2 }}
           >
             GitHub
-          </motion.a> */}
+          </motion.a>
         {/* </div> */}
       </div>
     </motion.footer>

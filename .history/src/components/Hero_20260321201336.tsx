@@ -110,7 +110,6 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 md:gap-16">
-       {/* <div className="relative w-72 h-96 md:w-80 md:h-[28rem] rounded-3xl overflow-hidden avatar-ring theme-bg p-1"> */}
         {/* Avatar Section */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -145,21 +144,13 @@ export function Hero() {
                 ease: 'linear',
               }}
             />
-            {/* <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden avatar-ring theme-bg p-1"> */}
-            <div className="relative w-72 h-96 md:w-80 md:h-[28rem] rounded-3xl overflow-hidden avatar-ring theme-bg p-1">
-              {/* <Avatar
+            <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden avatar-ring theme-bg p-1">
+              <Avatar
                 src={siteConfig.avatarUrl}
                 alt={siteConfig.name}
                 size={208}
                 className="w-full h-full rounded-full"
-              /> */}
-              <Avatar
-  src={siteConfig.avatarUrl}
-  alt={siteConfig.name}
-  width={320}
-  height={450}
-  className="w-full h-full rounded-3xl"
-/>
+              />
             </div>
           </motion.div>
         </motion.div>

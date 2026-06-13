@@ -145,21 +145,13 @@ export function Hero() {
                 ease: 'linear',
               }}
             />
-            {/* <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden avatar-ring theme-bg p-1"> */}
-            <div className="relative w-72 h-96 md:w-80 md:h-[28rem] rounded-3xl overflow-hidden avatar-ring theme-bg p-1">
-              {/* <Avatar
+            <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden avatar-ring theme-bg p-1">
+              <Avatar
                 src={siteConfig.avatarUrl}
                 alt={siteConfig.name}
                 size={208}
                 className="w-full h-full rounded-full"
-              /> */}
-              <Avatar
-  src={siteConfig.avatarUrl}
-  alt={siteConfig.name}
-  width={320}
-  height={450}
-  className="w-full h-full rounded-3xl"
-/>
+              />
             </div>
           </motion.div>
         </motion.div>
