@@ -62,7 +62,7 @@ export function Contact() {
             project in mind or just want to connect—feel free to reach out.
           </motion.p>
 
-          <div className="flex flex-wrap justify-center gap-6">
+          {/* <div className="flex flex-wrap justify-center gap-6">
             {contactLinks.map((link, i) => (
               <motion.a
                 // key={link.label}
@@ -79,9 +79,9 @@ export function Contact() {
               >
                 {/* {link.icon} */}
                 {/* <span>{link.label}</span> */}
-              </motion.a>
-            ))}
-          </div>
+              {/* </motion.a> */}
+            {/* ))} */}
+          {/* </div> */} 
 
           <motion.p
             initial={{ opacity: 0 }}
